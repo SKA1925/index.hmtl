@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<!-- saved from url=(0096)file:///C:/Users/Skarling%20Carmona/Downloads/Simulacro%20Nacional%20IFOM%202025%20-%20UACA.html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulacro Nacional IFOM 2025 - UACA</title>
+    <script src="./Simulacro Nacional IFOM 2025 - UACA_files/chart.min.js.descarga"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+            padding: 30px 0;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            font-weight: 300;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .date-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 25px;
+            margin-top: 15px;
+            backdrop-filter: blur(10px);
+            animation: fadeIn 1s ease-out 0.6s both;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .card h2 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icon {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .metric-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin-top: 20px;
+        }
+
+        .comparison-chart {
+            height: 200px;
+        }
+
+        .university-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: rgba(0,0,0,0.02);
+            border-radius: 8px;
+        }
+
+        .university-name {
+            width: 80px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .bar {
+            height: 20px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 10px;
+            margin: 0 15px;
+            flex-grow: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bar.uaca {
+            background: linear-gradient(90deg, #e74c3c, #c0392b);
+        }
+
+        .bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1));
+            animation: fillBar 2s ease-out;
+        }
+
+        .score {
+            font-weight: 700;
+            color: #2c3e50;
+            min-width: 60px;
+            text-align: right;
+        }
+
+        .students-section {
+            margin-top: 40px;
+        }
+
+        .students-grid {
+            max-height: 400px;
+            overflow-y: auto;
+            background: rgba(255,255,255,0.95);
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        .student-header {
+            display: grid;
+            grid-template-columns: 30px 2fr 1fr 1fr 1fr 1fr 1fr 1fr;
+            gap: 10px;
+            padding: 15px 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            font-weight: 600;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .student-row {
+            display: grid;
+            grid-template-columns: 30px 2fr 1fr 1fr 1fr 1fr 1fr 1fr;
+            gap: 10px;
+            padding: 12px 10px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: background 0.2s ease;
+            font-size: 0.85rem;
+        }
+
+        .student-row:hover {
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        .student-row.top-performer {
+            background: linear-gradient(90deg, rgba(46, 204, 113, 0.1), rgba(39, 174, 96, 0.05));
+            border-left: 4px solid #2ecc71;
+        }
+
+        .student-row.needs-attention {
+            background: linear-gradient(90deg, rgba(231, 76, 60, 0.1), rgba(192, 57, 43, 0.05));
+            border-left: 4px solid #e74c3c;
+        }
+
+        .conclusions {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .conclusions h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .conclusion-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .conclusion-icon {
+            width: 25px;
+            height: 25px;
+            background: #667eea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-right: 15px;
+            font-size: 0.8rem;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fillBar {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        .highlight {
+            color: #e74c3c;
+            font-weight: 700;
+        }
+
+        .success {
+            color: #27ae60;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2.5rem; }
+            .dashboard { grid-template-columns: 1fr; }
+            .student-header, .student-row { 
+                grid-template-columns: 1fr; 
+                gap: 5px;
+            }
+            .student-header > div, .student-row > div {
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>SIMULACRO NACIONAL IFOM 2025</h1>
+            <div class="subtitle">Resultados Ejecutivos - Universidad Autónoma de Centroamérica</div>
+            <div class="date-badge">28 de mayo 2025</div>
+        </div>
+
+        <div class="dashboard">
+            <!-- Resultado Global -->
+            <div class="card" style="animation-delay: 0s;">
+                <h2><span class="icon">📊</span>Resultado Global</h2>
+                <div class="metric">
+                    <div>
+                        <div class="metric-value">269.57</div>
+                        <div class="metric-label">Promedio Obtenido</div>
+                    </div>
+                </div>
+                <div class="metric">
+                    <div>
+                        <div class="metric-value success">34%</div>
+                        <div class="metric-label">Preguntas Acertadas</div>
+                    </div>
+                </div>
+                <div class="metric">
+                    <div>
+                        <div class="metric-value highlight">66%</div>
+                        <div class="metric-label">Preguntas Falladas</div>
+                    </div>
+                </div>
+                <div class="metric">
+                    <div>
+                        <div class="metric-value highlight">19%</div>
+                        <div class="metric-label">Ausentismo</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gráfico de Aciertos vs Fallos -->
+            <div class="card" style="animation-delay: 0.1s;">
+                <h2><span class="icon">🎯</span>Distribución de Respuestas</h2>
+                <div class="chart-container">
+                    <canvas id="accuracyChart" width="385" height="375" style="display: block; box-sizing: border-box; height: 300px; width: 308px;"></canvas>
+                </div>
+            </div>
+
+            <!-- Comparativo Universidades -->
+            <div class="card" style="animation-delay: 0.2s;">
+                <h2><span class="icon">🏆</span>Comparativo Universidades</h2>
+                <div class="comparison-chart">
+                    <div class="university-bar">
+                        <div class="university-name">U5</div>
+                        <div class="bar">
+                            <div class="bar-fill" style="width: 100%"></div>
+                        </div>
+                        <div class="score">319.20</div>
+                    </div>
+                    <div class="university-bar">
+                        <div class="university-name">U3</div>
+                        <div class="bar">
+                            <div class="bar-fill" style="width: 89%"></div>
+                        </div>
+                        <div class="score">285.00</div>
+                    </div>
+                    <div class="university-bar">
+                        <div class="university-name">U2</div>
+                        <div class="bar">
+                            <div class="bar-fill" style="width: 89%"></div>
+                        </div>
+                        <div class="score">283.78</div>
+                    </div>
+                    <div class="university-bar">
+                        <div class="university-name">U1</div>
+                        <div class="bar">
+                            <div class="bar-fill" style="width: 88%"></div>
+                        </div>
+                        <div class="score">282.22</div>
+                    </div>
+                    <div class="university-bar">
+                        <div class="university-name">UACA</div>
+                        <div class="bar uaca">
+                            <div class="bar-fill" style="width: 84%"></div>
+                        </div>
+                        <div class="score">269.57</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gráfico de Ausentismo -->
+            <div class="card" style="animation-delay: 0.3s;">
+                <h2><span class="icon">📅</span>Participación</h2>
+                <div class="chart-container">
+                    <canvas id="attendanceChart" width="385" height="375" style="display: block; box-sizing: border-box; height: 300px; width: 308px;"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resultados Detallados por Estudiante -->
+        <div class="students-section">
+            <div class="card" style="animation-delay: 0.4s;">
+                <h2><span class="icon">👥</span>Resultados Detallados por Estudiante</h2>
+                <div class="students-grid">
+                    <div class="student-header">
+                        <div>#</div>
+                        <div>Nombre</div>
+                        <div>Aciertos</div>
+                        <div>Fallos</div>
+                        <div>Blanco</div>
+                        <div>Puntaje</div>
+                        <div>% Acierto</div>
+                        <div>% Fallo</div>
+                    </div>
+                    <div class="student-row top-performer" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>28</div>
+                        <div>Luis Felipe Brenes Ramirez</div>
+                        <div>93</div>
+                        <div>67</div>
+                        <div>0</div>
+                        <div>465</div>
+                        <div>58%</div>
+                        <div>42%</div>
+                    </div>
+                    <div class="student-row top-performer" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>1</div>
+                        <div>Alexander Mata Castro</div>
+                        <div>84</div>
+                        <div>76</div>
+                        <div>0</div>
+                        <div>420</div>
+                        <div>53%</div>
+                        <div>48%</div>
+                    </div>
+                    <div class="student-row top-performer" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>15</div>
+                        <div>Francisco Marin Loaiza</div>
+                        <div>79</div>
+                        <div>72</div>
+                        <div>9</div>
+                        <div>395</div>
+                        <div>49%</div>
+                        <div>51%</div>
+                    </div>
+                    <div class="student-row" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>11</div>
+                        <div>Diana Jimenez</div>
+                        <div>75</div>
+                        <div>85</div>
+                        <div>0</div>
+                        <div>375</div>
+                        <div>47%</div>
+                        <div>53%</div>
+                    </div>
+                    <div class="student-row" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>2</div>
+                        <div>Abril Cordero Quesada</div>
+                        <div>74</div>
+                        <div>86</div>
+                        <div>0</div>
+                        <div>370</div>
+                        <div>46%</div>
+                        <div>54%</div>
+                    </div>
+                    <div class="student-row" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>19</div>
+                        <div>Gloriana Huertas Artavia</div>
+                        <div>73</div>
+                        <div>87</div>
+                        <div>0</div>
+                        <div>365</div>
+                        <div>46%</div>
+                        <div>54%</div>
+                    </div>
+                    <div class="student-row" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>33</div>
+                        <div>Maria Nathalia Gomez Hernandez</div>
+                        <div>71</div>
+                        <div>89</div>
+                        <div>0</div>
+                        <div>355</div>
+                        <div>44%</div>
+                        <div>56%</div>
+                    </div>
+                    <div class="student-row" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>38</div>
+                        <div>Nayeli Fonseca Cruz</div>
+                        <div>69</div>
+                        <div>91</div>
+                        <div>0</div>
+                        <div>345</div>
+                        <div>43%</div>
+                        <div>57%</div>
+                    </div>
+                    <div class="student-row" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>39</div>
+                        <div>Oscar Arcia</div>
+                        <div>67</div>
+                        <div>93</div>
+                        <div>0</div>
+                        <div>335</div>
+                        <div>42%</div>
+                        <div>58%</div>
+                    </div>
+                    <div class="student-row" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>8</div>
+                        <div>Celeste Ramirez Perez</div>
+                        <div>65</div>
+                        <div>95</div>
+                        <div>0</div>
+                        <div>325</div>
+                        <div>41%</div>
+                        <div>59%</div>
+                    </div>
+                    <div class="student-row" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>30</div>
+                        <div>Manuel Pacheco Chacón</div>
+                        <div>63</div>
+                        <div>97</div>
+                        <div>0</div>
+                        <div>315</div>
+                        <div>39%</div>
+                        <div>61%</div>
+                    </div>
+                    <div class="student-row" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>31</div>
+                        <div>Marcy Mendez Viquez</div>
+                        <div>63</div>
+                        <div>97</div>
+                        <div>0</div>
+                        <div>315</div>
+                        <div>39%</div>
+                        <div>61%</div>
+                    </div>
+                    <div class="student-row" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>45</div>
+                        <div>Stefany Gamboa Gutiérrez</div>
+                        <div>63</div>
+                        <div>97</div>
+                        <div>0</div>
+                        <div>315</div>
+                        <div>39%</div>
+                        <div>61%</div>
+                    </div>
+                    <div class="student-row" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>43</div>
+                        <div>Rodrigo Villalobos Cordero</div>
+                        <div>62</div>
+                        <div>98</div>
+                        <div>0</div>
+                        <div>310</div>
+                        <div>39%</div>
+                        <div>61%</div>
+                    </div>
+                    <div class="student-row" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>6</div>
+                        <div>Ashley Torres Rojas</div>
+                        <div>61</div>
+                        <div>99</div>
+                        <div>0</div>
+                        <div>305</div>
+                        <div>38%</div>
+                        <div>62%</div>
+                    </div>
+                    <div class="student-row" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>37</div>
+                        <div>Melanny Granados Ceciliano</div>
+                        <div>61</div>
+                        <div>99</div>
+                        <div>0</div>
+                        <div>305</div>
+                        <div>38%</div>
+                        <div>62%</div>
+                    </div>
+                    <div class="student-row" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>5</div>
+                        <div>Ashley Cedeño</div>
+                        <div>60</div>
+                        <div>100</div>
+                        <div>0</div>
+                        <div>300</div>
+                        <div>38%</div>
+                        <div>63%</div>
+                    </div>
+                    <div class="student-row" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>18</div>
+                        <div>Gloria Martín Garrido</div>
+                        <div>60</div>
+                        <div>100</div>
+                        <div>0</div>
+                        <div>300</div>
+                        <div>38%</div>
+                        <div>63%</div>
+                    </div>
+                    <div class="student-row" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>23</div>
+                        <div>José Alberto Guerra Serrano</div>
+                        <div>60</div>
+                        <div>100</div>
+                        <div>0</div>
+                        <div>300</div>
+                        <div>38%</div>
+                        <div>63%</div>
+                    </div>
+                    <div class="student-row" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>25</div>
+                        <div>Kimberly Sanchez Salazar</div>
+                        <div>60</div>
+                        <div>96</div>
+                        <div>4</div>
+                        <div>300</div>
+                        <div>38%</div>
+                        <div>63%</div>
+                    </div>
+                    <div class="student-row" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>42</div>
+                        <div>Raquel Rivera Moya</div>
+                        <div>59</div>
+                        <div>100</div>
+                        <div>1</div>
+                        <div>295</div>
+                        <div>37%</div>
+                        <div>63%</div>
+                    </div>
+                    <div class="student-row" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>3</div>
+                        <div>Alejandra Del Valle</div>
+                        <div>58</div>
+                        <div>102</div>
+                        <div>0</div>
+                        <div>290</div>
+                        <div>36%</div>
+                        <div>64%</div>
+                    </div>
+                    <div class="student-row" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>12</div>
+                        <div>Fabiola Gonzalez Molina</div>
+                        <div>58</div>
+                        <div>102</div>
+                        <div>0</div>
+                        <div>290</div>
+                        <div>36%</div>
+                        <div>64%</div>
+                    </div>
+                    <div class="student-row" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>29</div>
+                        <div>Luis Santiago Calvo Sibaja</div>
+                        <div>58</div>
+                        <div>79</div>
+                        <div>23</div>
+                        <div>290</div>
+                        <div>36%</div>
+                        <div>64%</div>
+                    </div>
+                    <div class="student-row" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>47</div>
+                        <div>Walter Valerín Huembes</div>
+                        <div>58</div>
+                        <div>100</div>
+                        <div>2</div>
+                        <div>290</div>
+                        <div>36%</div>
+                        <div>64%</div>
+                    </div>
+                    <div class="student-row" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>17</div>
+                        <div>Giuliana Cappella</div>
+                        <div>57</div>
+                        <div>103</div>
+                        <div>0</div>
+                        <div>285</div>
+                        <div>36%</div>
+                        <div>64%</div>
+                    </div>
+                    <div class="student-row" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>35</div>
+                        <div>Mariana Ovares</div>
+                        <div>57</div>
+                        <div>103</div>
+                        <div>0</div>
+                        <div>285</div>
+                        <div>36%</div>
+                        <div>64%</div>
+                    </div>
+                    <div class="student-row" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>7</div>
+                        <div>Camila Acosta Delgado</div>
+                        <div>55</div>
+                        <div>75</div>
+                        <div>30</div>
+                        <div>275</div>
+                        <div>34%</div>
+                        <div>66%</div>
+                    </div>
+                    <div class="student-row" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>40</div>
+                        <div>Paola Blanco Rodriguez</div>
+                        <div>53</div>
+                        <div>107</div>
+                        <div>0</div>
+                        <div>265</div>
+                        <div>33%</div>
+                        <div>67%</div>
+                    </div>
+                    <div class="student-row" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>13</div>
+                        <div>Fabiola Chaves Vega</div>
+                        <div>52</div>
+                        <div>108</div>
+                        <div>0</div>
+                        <div>260</div>
+                        <div>33%</div>
+                        <div>68%</div>
+                    </div>
+                    <div class="student-row" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>16</div>
+                        <div>Fressy Pamela Díaz Ortega</div>
+                        <div>51</div>
+                        <div>109</div>
+                        <div>0</div>
+                        <div>255</div>
+                        <div>32%</div>
+                        <div>68%</div>
+                    </div>
+                    <div class="student-row" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>22</div>
+                        <div>Javier Gonzalez</div>
+                        <div>51</div>
+                        <div>109</div>
+                        <div>0</div>
+                        <div>255</div>
+                        <div>32%</div>
+                        <div>68%</div>
+                    </div>
+                    <div class="student-row" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>21</div>
+                        <div>Jairon Chacon Reyes</div>
+                        <div>50</div>
+                        <div>110</div>
+                        <div>0</div>
+                        <div>250</div>
+                        <div>31%</div>
+                        <div>69%</div>
+                    </div>
+                    <div class="student-row" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>24</div>
+                        <div>Josue Rosales Sanchez</div>
+                        <div>50</div>
+                        <div>86</div>
+                        <div>24</div>
+                        <div>250</div>
+                        <div>31%</div>
+                        <div>69%</div>
+                    </div>
+                    <div class="student-row" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>46</div>
+                        <div>Valery Vargas</div>
+                        <div>50</div>
+                        <div>110</div>
+                        <div>0</div>
+                        <div>250</div>
+                        <div>31%</div>
+                        <div>69%</div>
+                    </div>
+                    <div class="student-row" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>34</div>
+                        <div>Maria Paula Cespedes</div>
+                        <div>49</div>
+                        <div>111</div>
+                        <div>0</div>
+                        <div>245</div>
+                        <div>31%</div>
+                        <div>69%</div>
+                    </div>
+                    <div class="student-row" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>27</div>
+                        <div>Krisly Brenes Mcdonald</div>
+                        <div>46</div>
+                        <div>114</div>
+                        <div>0</div>
+                        <div>230</div>
+                        <div>29%</div>
+                        <div>71%</div>
+                    </div>
+                    <div class="student-row" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>36</div>
+                        <div>Melanie Muñoz Ramirez</div>
+                        <div>46</div>
+                        <div>114</div>
+                        <div>0</div>
+                        <div>230</div>
+                        <div>29%</div>
+                        <div>71%</div>
+                    </div>
+                    <div class="student-row needs-attention" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>26</div>
+                        <div>Kliment Cespedes Mora</div>
+                        <div>44</div>
+                        <div>89</div>
+                        <div>27</div>
+                        <div>220</div>
+                        <div>28%</div>
+                        <div>73%</div>
+                    </div>
+                    <div class="student-row needs-attention" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>41</div>
+                        <div>Pauleth Aguilar Jiménez</div>
+                        <div>44</div>
+                        <div>116</div>
+                        <div>0</div>
+                        <div>220</div>
+                        <div>28%</div>
+                        <div>73%</div>
+                    </div>
+                    <div class="student-row needs-attention" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>10</div>
+                        <div>Daniela Angulo</div>
+                        <div>42</div>
+                        <div>115</div>
+                        <div>3</div>
+                        <div>210</div>
+                        <div>26%</div>
+                        <div>74%</div>
+                    </div>
+                    <div class="student-row needs-attention" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>44</div>
+                        <div>Sebastian Ulate</div>
+                        <div>42</div>
+                        <div>116</div>
+                        <div>2</div>
+                        <div>210</div>
+                        <div>26%</div>
+                        <div>74%</div>
+                    </div>
+                    <div class="student-row needs-attention" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>32</div>
+                        <div>Maria Alexandra Valverde Lopez</div>
+                        <div>26</div>
+                        <div>11</div>
+                        <div>123</div>
+                        <div>130</div>
+                        <div>16%</div>
+                        <div>84%</div>
+                    </div>
+                    <div class="student-row needs-attention" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>4</div>
+                        <div>Ana Lucia Conejo Corrales</div>
+                        <div>15</div>
+                        <div>22</div>
+                        <div>123</div>
+                        <div>75</div>
+                        <div>9%</div>
+                        <div>91%</div>
+                    </div>
+                    <div class="student-row needs-attention" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>9</div>
+                        <div>Cristina Mena Najera</div>
+                        <div>0</div>
+                        <div>2</div>
+                        <div>158</div>
+                        <div>0</div>
+                        <div>0%</div>
+                        <div>100%</div>
+                    </div>
+                    <div class="student-row needs-attention" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>14</div>
+                        <div>Fernanda Castro Rodriguez</div>
+                        <div>0</div>
+                        <div>0</div>
+                        <div>160</div>
+                        <div>0</div>
+                        <div>0%</div>
+                        <div>100%</div>
+                    </div>
+                    <div class="student-row needs-attention" style="animation: 0.5s ease-out 0s 1 normal both running slideInUp;">
+                        <div>20</div>
+                        <div>Ingrid Odio Mora</div>
+                        <div>0</div>
+                        <div>0</div>
+                        <div>160</div>
+                        <div>0</div>
+                        <div>0%</div>
+                        <div>100%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Conclusiones -->
+        <div class="conclusions">
+            <h2><span class="icon">📋</span>Conclusiones Ejecutivas</h2>
+            <div class="conclusion-item">
+                <div class="conclusion-icon">📊</div>
+                <div>El resultado de la evaluación va en escala real de <strong>0 al 800 puntos</strong></div>
+            </div>
+            <div class="conclusion-item">
+                <div class="conclusion-icon">❓</div>
+                <div>La cantidad de preguntas evaluadas son de <strong>160</strong>, similar a la distribución del examen real</div>
+            </div>
+            <div class="conclusion-item">
+                <div class="conclusion-icon">⏱️</div>
+                <div>El tiempo de examen fue <strong>4 horas</strong>, similar a lo planteado para el examen real</div>
+            </div>
+            <div class="conclusion-item">
+                <div class="conclusion-icon">📈</div>
+                <div>El resultado promedio del simulacro es de <strong class="highlight">269.57 puntos</strong></div>
+            </div>
+            <div class="conclusion-item">
+                <div class="conclusion-icon">✅</div>
+                <div>El porcentaje de preguntas acertadas es de un <strong class="success">34%</strong></div>
+            </div>
+            <div class="conclusion-item">
+                <div class="conclusion-icon">❌</div>
+                <div>El porcentaje de preguntas falladas es de un <strong class="highlight">66%</strong></div>
+            </div>
+            <div class="conclusion-item">
+                <div class="conclusion-icon">👤</div>
+                <div>El porcentaje de ausentismo de la universidad es de un <strong class="highlight">19%</strong></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Gráfico de Aciertos vs Fallos
+        const accuracyCtx = document.getElementById('accuracyChart').getContext('2d');
+        new Chart(accuracyCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Aciertos', 'Fallos'],
+                datasets: [{
+                    data: [34, 66],
+                    backgroundColor: [
+                        'rgba(46, 204, 113, 0.8)',
+                        'rgba(231, 76, 60, 0.8)'
+                    ],
+                    borderColor: [
+                        'rgba(46, 204, 113, 1)',
+                        'rgba(231, 76, 60, 1)'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Gráfico de Ausentismo
+        const attendanceCtx = document.getElementById('attendanceChart').getContext('2d');
+        new Chart(attendanceCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Presentaron', 'Ausentes'],
+                datasets: [{
+                    data: [81, 19],
+                    backgroundColor: [
+                        'rgba(102, 126, 234, 0.8)',
+                        'rgba(149, 165, 166, 0.8)'
+                    ],
+                    borderColor: [
+                        'rgba(102, 126, 234, 1)',
+                        'rgba(149, 165, 166, 1)'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Animaciones adicionales
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+
+            const studentRows = document.querySelectorAll('.student-row');
+            studentRows.forEach((row, index) => {
+                row.style.animationDelay = `${index * 0.02}s`;
+                row.style.animation = 'slideInUp 0.5s ease-out both';
+            });
+        });
+    </script>
+
+</body></html>
